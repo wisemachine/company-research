@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas as pd
 import datetime
+from pathlib import Path
 
 # Function to load data from file
 def load_initial_data():
-    file_path = "/Users/harinikannan/Downloads/2024q3/sub.txt"
-    return pd.read_csv(file_path, sep='\t', low_memory=False)
+    try:
+        # Construct the path relative to the script's location
+        file_path = Path(__file__).parent / "datasets" / "sub_2024q3.txt"
+        return pd.read_csv(file_path, sep='\t', low_memory=False)
+    except FileNotFoundError:
+        st.error("Initial data file not found. Please ensure 'sub_2024q3.txt' exists in the sec_data_research/datasets directory.")
+        return pd.DataFrame()  # Return empty DataFrame if file not found
 
 # Function to load additional data
 def load_additional_data(file):
