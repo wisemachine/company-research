@@ -27,7 +27,7 @@ def get_initial_data():
     return load_initial_data()
 
 # Streamlit App
-st.title("SEC Company Database")
+st.title("SEC Company Explorer")
 
 # Load initial dataset
 df = get_initial_data()
